@@ -122,7 +122,7 @@ end
 -- ==================== UTILITIES ====================
 local function getPlayer(name)
     if not name or name == "" then return nil end
-    local lower = name:lower()
+    local lower = tostring(name):lower()
     if lower == LocalPlayer.Name:lower() then return LocalPlayer end
     for _, plr in ipairs(Players:GetPlayers()) do
         if plr.Name:lower() == lower then
@@ -136,7 +136,7 @@ local function getPlayersList()
     local list = {}
     for _, plr in ipairs(Players:GetPlayers()) do
         if plr ~= LocalPlayer then
-            table.insert(list, plr)
+            table.insert(list, plr.Name) -- возвращаем имя игрока (строку), а не объект Player
         end
     end
     return list
